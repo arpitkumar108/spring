@@ -32,9 +32,9 @@ public class ProductController {
 	@GetMapping("/get-product/{id}")
 	public Object getProduct(@PathVariable("id") String id) {
 		Product product = service.getProductById(id);
-		if(product!=null){
+		if (product != null) {
 			return product;
-		}else {
+		} else {
 			return "Not Found";
 		}
 
@@ -55,8 +55,7 @@ public class ProductController {
 			return "product not found to delete id= " + id;
 		}
 	}
-	
-	
+
 	@PutMapping("/update-product")
 	public String updateProduct(@RequestBody Product product) {
 		boolean isUpdated = service.updateProduct(product);
@@ -65,6 +64,14 @@ public class ProductController {
 		} else {
 			return "product not found to update id= " + product.getProductId();
 		}
+	}
+
+	@GetMapping("/get-maxprice-product")
+	public Product getMaxPriceProduct() {
+
+		Product product = service.getMaxPriceProducts();
+		return product;
+
 	}
 
 }
