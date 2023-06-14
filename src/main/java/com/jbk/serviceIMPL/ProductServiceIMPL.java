@@ -70,10 +70,22 @@ public class ProductServiceIMPL implements ProductService {
 	@Override
 	public Product getMaxPriceProducts() {
 
-		List<Product> list = getAllProduct();
-		Product product = list.stream().max(Comparator.comparingDouble(Product::getProductPrice)).get();
-
-		return product;
+	List<Product> list = getAllProduct();
+//		Product product = list.stream().max(Comparator.comparingDouble(Product::getProductPrice)).get();
+	
+		Product maxPriceProduct=null;
+	
+		double max=0;
+		
+		for (Product product:list)
+		{
+			if(max<product.getProductPrice())
+			{
+					max=product.getProductPrice();
+					maxPriceProduct=product;
+			}
+		}
+		return maxPriceProduct ;
 	}
 
 	@Override
